@@ -17,6 +17,10 @@ async function getCountries() {
         //  - Convert the response to JSON.
         const data = await response.json();
 
+        // Data added to countries variable
+        countries = data;
+        console.log(countries);
+
         //  - pass the data to the displayCountries function.
         console.log(data);
         displayCountries(data);
@@ -34,17 +38,9 @@ function displayCountries(data) {
         //      - Create a div for each country.
         //      - Add the country name and flag to the div with the provided HTML structure.
         let countryHTML = `
-            <div class="country">
+            <div class="country" data-name="${country.name.common}">
                 <h3 class="country-name">${country.name.common}</h3>
                 <img class="country-flag" src="${country.flags.svg}" />
-                <div class="content">
-                <h3>Capital</h3>
-                <p>${country.capital}</p>
-                <h3>Population</h3>
-                <p>${country.population}</p>
-                <h3>Region</h3>
-                <p>${country.region}</p>
-                </div>
             </div>
         `;
 
@@ -61,9 +57,25 @@ getCountries();
 //------------------------
 
 // Create a click event listener on the container element
-//   Make sure that only clicks on the country element are targeted
-//     Get the country name from the clicked element
-//     Find the country object in the countries array that matches the name
+container.addEventListener('click', e => {
+    //   Make sure that only clicks on the country element are targeted
+    const countryCard = e.target.closest('.country');
+    console.log(e.target);
+    console.log(countryCard);
+
+    if (!countryCard) return;
+
+    //     Get the country name from the clicked element
+    const countryName = countryCard.dataset.name;
+    console.log(countryName);
+
+    //     Find the country object in the countries array that matches the name
+    const country = countries.find(
+        (country) => country.name.common === countryName
+    );
+    console.log(countryName);
+    // displayCountryModal(country);
+});
 
 //   update the modal content with the country data
 //   add the open class to the overlay element
@@ -78,3 +90,19 @@ getCountries();
 // Close the modal when the user clicks outside of the modal
 
 // Close the modal when the user presses the escape key
+
+
+
+// </div>
+// <div class="country">
+// <h3 class="country-name">${country.name.common}</h3>
+// <img class="country-flag" src="${country.flags.svg}" />
+// <div class="content">
+// <h3>Capital</h3>
+// <p>${country.capital}</p>
+// <h3>Population</h3>
+// <p>${country.population}</p>
+// <h3>Region</h3>
+// <p>${country.region}</p>
+// </div>
+// </div>
