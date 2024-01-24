@@ -99,15 +99,27 @@ function displayCountryModal(country) {
 }
 
 // Create a click event listener on the close button
-//   remove the open class from the overlay element
+
+closeButton.addEventListener('click', () => {
+    //   remove the open class from the overlay element
+    overlay.classList.remove('open');
+});
 
 //========================
 //  EXTRA CREDIT
 //------------------------
 
 // Close the modal when the user clicks outside of the modal
+overlay.addEventListener('click', e  => {
+    const isOutSide = !e.target.closest('.modal');
+    if (isOutSide) {
+        overlay.classList.remove('open');
+    }
+});
 
 // Close the modal when the user presses the escape key
-
-
-
+document.addEventListener('keyup', e  => {
+    if (e.key === 'Escape') {
+        overlay.classList.remove('open');
+    }
+});
