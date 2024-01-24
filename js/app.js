@@ -28,14 +28,14 @@ function displayCountries(data) {
         let countryHTML = `
             <div class="country">
                 <h3 class="country-name">${country.name.common}</h3>
-                <img class="country-flag" src="https://flagcdn.com/nl.svg" />
+                <img class="country-flag" src="${country.flags.svg}" />
                 <div class="content">
                 <h3>Capital</h3>
-                <p>Amsterdam</p>
+                <p>${country.capital}</p>
                 <h3>Population</h3>
-                <p>16.655.799</p>
+                <p>${country.population}</p>
                 <h3>Region</h3>
-                <p>Europe</p>
+                <p>${country.region}</p>
                 </div>
             </div>
         `;
