@@ -74,11 +74,29 @@ container.addEventListener('click', e => {
         (country) => country.name.common === countryName
     );
     console.log(countryName);
-    // displayCountryModal(country);
+    displayCountryModal(country);
 });
 
 //   update the modal content with the country data
-//   add the open class to the overlay element
+function displayCountryModal(country) {
+    const modalHTML = `
+        <h2>${country.name.common}</h2>
+        <div class="flag">
+            <img src=${country.flags.svg} alt=${country.flags.alt} />
+        </div>
+        <div class="content">
+            <h3>Population</h3>
+            <p>${country.population}</p>
+            <h3>Region:</h3>
+            <p>${country.region}</p>
+            <h3>Capital:</h3>
+            <p>${country.capital}</p>
+        </div>
+    `
+    modalContent.innerHTML = modalHTML;
+    //   add the open class to the overlay element
+    overlay.classList.add('open');
+}
 
 // Create a click event listener on the close button
 //   remove the open class from the overlay element
@@ -93,16 +111,3 @@ container.addEventListener('click', e => {
 
 
 
-// </div>
-// <div class="country">
-// <h3 class="country-name">${country.name.common}</h3>
-// <img class="country-flag" src="${country.flags.svg}" />
-// <div class="content">
-// <h3>Capital</h3>
-// <p>${country.capital}</p>
-// <h3>Population</h3>
-// <p>${country.population}</p>
-// <h3>Region</h3>
-// <p>${country.region}</p>
-// </div>
-// </div>
